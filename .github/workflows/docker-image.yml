@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: check out
+      uses: actions/checkout@v4
+        
+    - name: login docker
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+    - name: build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: brunomartens/excellent-yarp:latest
