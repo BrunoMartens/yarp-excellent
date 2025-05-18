@@ -1,0 +1,6 @@
+@yarp_excellent_HostAddress = http://localhost:5162
+
+GET {{yarp_excellent_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
